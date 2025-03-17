@@ -1,0 +1,18 @@
+<div>
+  <div>
+    <div>
+      <div>
+        <ul role="list">
+          <%= turbo_stream_from "#{dom_id(@chat)}_messages" %>
+          <div id="<%= dom_id(@chat) %>_messages">
+            <% @chat.messages.each do |message| %>
+              <%= render partial: "messages/message", locals: { dom_id: dom_id(message), role: message.role, content: message.content } %>
+            <% end %>
+          </div>
+        </ul>
+
+        <%= render partial: "messages/form", locals: { chat: @chat } %>
+      </div>
+    </div>
+  </div>
+</div>
